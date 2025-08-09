@@ -1,0 +1,303 @@
+<?php
+// Path folder gambar
+$folder = "image/";
+
+// Ambil semua fail gambar dari folder (format biasa)
+$files = glob($folder . "*.{jpg,jpeg,png,gif,webp}", GLOB_BRACE);
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Deena Trans Services - Tour and Transfer</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: #f8f9fa;
+      margin: 0;
+      padding: 0;
+      color: #212529;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+    header {
+      border-bottom: 1px solid #ddd;
+      margin-bottom: 20px;
+      overflow: hidden;
+      border-radius: 8px 8px 0 0;
+    }
+    header img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      max-height: 220px;
+    }
+    .header-text {
+      padding: 15px 20px;
+      background-color: white;
+      border-radius: 0 0 8px 8px;
+    }
+    h1 {
+      margin: 0;
+      font-weight: 700;
+      color: #0d6efd;
+      font-size: 1.8rem;
+    }
+    .location {
+      color: #6c757d;
+      font-size: 0.9rem;
+      margin-top: 6px;
+    }
+    section {
+      padding: 0 20px 20px 20px;
+      margin-bottom: 20px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
+    }
+    h2 {
+      font-weight: 600;
+      color: #343a40;
+      border-bottom: 1px solid #dee2e6;
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+      font-size: 1.25rem;
+    }
+    ul.features {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    ul.features li {
+      margin-bottom: 10px;
+      padding-left: 22px;
+      position: relative;
+      font-size: 1rem;
+    }
+    ul.features li::before {
+      content: "✓";
+      color: #198754;
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-weight: bold;
+      font-size: 1.1rem;
+      line-height: 1;
+    }
+    .btn-whatsapp {
+      display: inline-flex;
+      align-items: center;
+      background-color: #25D366;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: background-color 0.3s ease;
+      user-select: none;
+      margin-left: 20px;
+    }
+    .btn-whatsapp:hover {
+      background-color: #1ebe57;
+    }
+    .btn-whatsapp svg {
+      width: 24px;
+      height: 24px;
+      margin-right: 10px;
+      fill: white;
+    }
+    footer {
+      font-size: 0.8rem;
+      color: #6c757d;
+      text-align: center;
+      margin: 40px 0 20px 0;
+    }
+    .know-before {
+      font-size: 0.95rem;
+      color: #495057;
+      white-space: pre-line;
+    }
+
+    /* Slider bulat */
+    .slider-container {
+      position: relative;
+      width: 220px;
+      height: 220px;
+      margin: 30px auto;
+      overflow: hidden;
+      border-radius: 50%;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    .slider-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+    .slider-container img.active {
+      opacity: 1;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        max-width: 100%;
+      }
+      .btn-whatsapp {
+        margin-left: 0;
+        width: 100%;
+        justify-content: center;
+        padding: 14px 0;
+        font-size: 1.2rem;
+      }
+      section {
+        padding: 15px 15px 20px 15px;
+      }
+      .header-text {
+        padding: 15px 15px;
+      }
+      h1 {
+        font-size: 1.5rem;
+      }
+      h2 {
+        font-size: 1.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Transportation vehicle" />
+    <div class="header-text">
+      <h1>Deena Trans Services</h1>
+      <div class="location">Tour and Transport - Malaysia</div>
+    </div>
+  </header>
+
+  <section>
+    <h2>About Us</h2>
+    <p>
+      Providing reliable, comfortable, and affordable airport transfer services to and from KLIA. Our professional drivers ensure timely pickups and safe rides with well-maintained vehicles. Available 24/7 for your convenience.
+    </p>
+  </section>
+
+<section>
+  <h2>🛬Landing in Kuala Lumpur?</h2>
+  <p>
+    Struggling to find a reliable and safe ride—especially late at night? Let’s change that. Discover the difference with <strong>Deena Trans Services</strong>!
+  </p>
+  <p>
+    We provide a wide range of vehicles to suit your needs for <strong>Kuala Lumpur International Airport (KLIA)</strong> and <strong>interstate transfers</strong> across Peninsular Malaysia.
+  </p>
+
+  <h3>🚖 Need an early morning ride to KLIA?</h3>
+  <p>
+    Worried about e-hailing availability, uncomfortable interiors, or bumpy rides? Choose Deena Trans for a smoother, more dependable journey—day or night.
+  </p>
+
+  <h3>✈️ Landing after midnight?</h3>
+  <p>
+    We’ve got you covered—whether you're arriving at 1 AM or 5 AM. Our drivers are always ready.
+  </p>
+
+  <h3>👥 Expecting a guest at KLIA?</h3>
+  <p>
+    Let us take care of their pickup so you can focus on welcoming them. We even offer <strong>airport paging service</strong>—our driver will wait at the Arrival Hall with a name placard for a warm, professional greeting.
+  </p>
+
+  <p>🌧️ <strong>Rain or shine, we’re available 24/7!</strong> Count on us for dependable service at any time of day or night.</p>
+
+  <h3>🚐 We provide direct transfers to:</h3>
+  <ul class="features">
+    <li>KL City (Bukit Bintang, KL Sentral)</li>
+    <li>Genting Highlands</li>
+    <li>Melaka</li>
+    <li>Ipoh</li>
+    <li>Penang</li>
+    <li>Johor Bahru</li>
+    <li>Other states upon request</li>
+  </ul>
+
+  <h3>💎 What makes us different?</h3>
+  <ul class="features">
+    <li>Variety of vehicles: from compact sedans to premium MPVs</li>
+    <li>Clean, air-conditioned and well-maintained fleet</li>
+    <li>Safe and reliable transportation every time</li>
+    <li>Professional, polite, and experienced drivers</li>
+    <li>Drivers trained to assist with luggage and customer needs</li>
+    <li>Multiple payment methods accepted</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Know Before You Go</h2>
+  <div class="know-before">
+    For a smooth and hassle-free experience, we recommend booking your airport transfers or guided tours with Deena Trans Services in advance. You can always count on us for reliable and caring service.<br><br>
+    Traveling with lots of luggage or a group? No worries! Choose our larger vehicle options to ensure everyone travels comfortably.<br><br>
+    To make your journey even better, feel free to share any special requests or preferences with your driver ahead of time. We’re here to help make your trip just how you want it!<br><br>
+    Many of our customers keep coming back to Deena Trans Services for their airport transfers because they trust us to be consistent and dependable every time.
+  </div>
+</section>
+
+<!-- Slider automatik gambar -->
+<section style="text-align:center;">
+  <h2>Gallery</h2>
+  <div class="slider-container">
+    <?php
+    $first = true;
+    foreach ($files as $file) {
+        $activeClass = $first ? "active" : "";
+        echo "<img src='$file' class='$activeClass' alt='Gallery Image'>";
+        $first = false;
+    }
+    ?>
+  </div>
+</section>
+
+<section style="text-align: center;">
+  <h2>Booking</h2>
+  <a 
+    href="https://wa.me/+601157152406?text=Hello!%20I%20would%20like%20to%20book%20a%20ride%20with%20Deena%20Trans%20Services."
+    target="_blank" 
+    rel="noopener noreferrer" 
+    class="btn-whatsapp"
+    aria-label="Book via WhatsApp"
+  >
+    <svg viewBox="0 0 24 24" aria-hidden="true" >
+      <path d="M20.52 3.48A11.923 11.923 0 0012 0C5.373 0 .126 5.372 0 12c-.05 2.12.594 4.195 1.89 6.022L0 24l6.163-1.897A11.93 11.93 0 0012 24c6.627 0 12-5.372 12-12 0-3.203-1.25-6.213-3.48-8.52zM12 21.5a9.44 9.44 0 01-4.77-1.307l-.341-.21-3.663 1.127 1.153-3.566-.222-.357A9.434 9.434 0 012.5 12C2.5 7.253 7.254 2.5 12 2.5S21.5 7.253 21.5 12 16.746 21.5 12 21.5zm5.224-7.812c-.24-.12-1.416-.7-1.636-.778-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.92-1.18-.71-.63-1.18-1.4-1.32-1.64-.14-.24-.015-.37.105-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.48-.4-.42-.54-.42-.14 0-.3-.02-.46-.02s-.42.06-.64.3c-.22.24-.86.84-.86 2.06 0 1.22.88 2.4 1 2.57.12.18 1.72 2.62 4.18 3.67.58.25 1.03.4 1.38.52.58.2 1.11.17 1.53.1.47-.08 1.44-.59 1.64-1.15.2-.56.2-1.04.14-1.15-.06-.1-.22-.16-.46-.28z"/>
+    </svg>
+    Book via WhatsApp
+  </a>
+</section>
+
+<footer>
+  &copy; 2025 Deena Trans Services
+</footer>
+
+<script>
+const images = document.querySelectorAll('.slider-container img');
+let currentIndex = 0;
+
+function showNextImage() {
+  images[currentIndex].classList.remove('active');
+  currentIndex = (currentIndex + 1) % images.length;
+  images[currentIndex].classList.add('active');
+}
+
+setInterval(showNextImage, 3000); // tukar gambar setiap 3 saat
+</script>
+
+</body>
+</html>

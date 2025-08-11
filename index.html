@@ -103,24 +103,26 @@
 
     /* Button WhatsApp Terapung */
     .whatsapp-float {
-      position: fixed;
-      width: 60px;
-      height: 60px;
-      bottom: 20px;
-      right: 20px;
-      background-color: #25D366;
-      background-image: url('images/whatsapp-business-icon.png');
-      background-size: 60% 60%;
-      background-position: center;
-      background-repeat: no-repeat;
-      border-radius: 50%;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-      z-index: 999;
-      transition: transform 0.3s ease;
-      text-indent: -9999px; /* sembunyikan teks (jika ada) */
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25D366;
+    border-radius: 50%;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
     }
     .whatsapp-float:hover {
       transform: scale(1.1);
+    }
+    .whatsapp-float svg {
+      width: 32px;
+      height: 32px;
     }
 
     /* Responsive tweaks */
@@ -217,15 +219,18 @@
 
   <!-- Button WhatsApp Terapung -->
   <a href="https://wa.me/+601157152406?text=Hello!%20I%20would%20like%20to%20book%20a%20ride." 
-     class="whatsapp-float" 
-     target="_blank" 
-     aria-label="Chat on WhatsApp Business">
-     WhatsApp Business
-  </a>
+   class="whatsapp-float" 
+   target="_blank" 
+   aria-label="Chat on WhatsApp Business">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+    <path fill="#ffffff" d="M380.9 97.1C339...Z"/>
+  </svg>
+</a>
 
   <script src="js/gallery.js"></script>
 </body>
 </html>
+
 
 
 

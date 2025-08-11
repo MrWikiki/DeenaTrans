@@ -103,28 +103,28 @@
 
     /* Button WhatsApp Terapung */
     .whatsapp-float {
-        position: fixed;
-        width: 60px;
-        height: 60px;
-        bottom: 20px;
-        right: 20px;
-        background-color: #25D366;
-        border-radius: 50%;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-        z-index: 999;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: transform 0.3s ease;
-        text-decoration: none;
-      }
-      .whatsapp-float:hover {
-        transform: scale(1.1);
-      }
-      .whatsapp-float img {
-        width: 32px;
-        height: 32px;
-      }
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  background-color: #25D366;
+  border-radius: 50%;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  transition: transform 0.3s ease;
+  text-decoration: none;
+}
+.whatsapp-float:hover {
+  transform: scale(1.1);
+}
+.whatsapp-float svg {
+  width: 32px;
+  height: 32px;
+}
 
     /* Responsive tweaks */
     @media (max-width: 640px) {
@@ -219,17 +219,22 @@
   </footer>
 
   <!-- Button WhatsApp Terapung -->
-  <a href="https://wa.me/+601157152406?text=Hello!%20I%20would%20like%20to%20book%20a%20ride%20with%20Deena%20Trans%20Services." 
-     class="whatsapp-float" 
-     target="_blank" 
-     aria-label="Chat on WhatsApp Business">
-    <img src="Whatsapp Business.ico" alt="WhatsApp Business" />
+  <a href="https://wa.me/+601157152406?text=Hello!%20I%20would%20like%20to%20book%20a%20ride%20with%20Deena%20Trans%20Services."
+     class="whatsapp-float"
+     target="_blank"
+     aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+      <path fill="#fff" d="M16 0C7.163 0 0 7.164 0 16c0 2.817.738 5.567 2.144 7.988L0 32l8.28-2.16C10.64 30.85 13.29 32 16 32c8.837 0 16-7.164 16-16S24.837 0 16 0z"/>
+      <path fill="#25D366" d="M16 2c7.732 0 14 6.268 14 14 0 7.732-6.268 14-14 14-2.57 0-5.056-.708-7.225-2.047l-.517-.31-4.91 1.28 1.31-4.846-.333-.534C3.84 21.305 3 18.697 3 16 3 8.268 9.268 2 16 2z"/>
+      <path fill="#fff" d="M24.322 19.85c-.373-.187-2.21-1.093-2.554-1.216-.345-.124-.595-.187-.845.187-.25.373-.968 1.215-1.187 1.465-.218.25-.436.28-.81.093-.373-.187-1.578-.58-3.006-1.848-1.111-.992-1.861-2.215-2.079-2.588-.218-.373-.023-.574.164-.761.168-.168.373-.436.56-.654.187-.218.25-.373.373-.623.124-.25.062-.468-.031-.654-.093-.187-.845-2.038-1.16-2.785-.305-.73-.615-.63-.845-.64-.218-.01-.468-.012-.718-.012s-.654.093-1 .467c-.345.373-1.31 1.278-1.31 3.11 0 1.832 1.34 3.6 1.526 3.848.187.25 2.638 4.03 6.4 5.654.895.386 1.594.617 2.14.79.898.285 1.717.245 2.364.148.721-.108 2.21-.904 2.522-1.777.31-.873.31-1.62.218-1.777-.092-.156-.34-.25-.713-.437z"/>
+    </svg>
   </a>
 
 
   <script src="js/gallery.js"></script>
 </body>
 </html>
+
 
 
 

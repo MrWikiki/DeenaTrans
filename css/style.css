@@ -104,3 +104,28 @@ h2 {
     font-size: 1.5rem;
   }
 }
+.btn-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #25D366;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding: 12px 20px;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn-whatsapp:hover {
+  background-color: #1ebe5d;
+}
+
+.btn-whatsapp svg {
+  width: 24px;
+  height: 24px;
+  fill: white;
+}
+
+

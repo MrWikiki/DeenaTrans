@@ -109,20 +109,18 @@
       bottom: 20px;
       right: 20px;
       background-color: #25D366;
-      color: white;
+      background-image: url('images/whatsapp-business-icon.png');
+      background-size: 60% 60%;
+      background-position: center;
+      background-repeat: no-repeat;
       border-radius: 50%;
-      text-align: center;
-      font-size: 30px;
       box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      transition: background-color 0.3s ease;
+      z-index: 999;
+      transition: transform 0.3s ease;
+      text-indent: -9999px; /* sembunyikan teks (jika ada) */
     }
     .whatsapp-float:hover {
-      background-color: #1ebe5d;
+      transform: scale(1.1);
     }
 
     /* Responsive tweaks */
@@ -226,6 +224,7 @@
   <script src="js/gallery.js"></script>
 </body>
 </html>
+
 
 
 

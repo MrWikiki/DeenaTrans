@@ -1,6 +1,6 @@
 // ==== CONFIG ====
-const username = "MrWikiki"; // tukar
-const repo = "DeenaTrans"; // tukar
+const username = "MrWikiki"; // ikut username GitHub
+const repo = "DeenaTrans"; // ikut nama repo
 const folder = "images"; // folder gambar
 
 const carousel = document.getElementById("image-carousel");

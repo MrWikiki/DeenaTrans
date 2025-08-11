@@ -57,6 +57,21 @@ h2 {
   margin-bottom: 12px;
   font-size: 1.25rem;
 }
+ul.features {
+  list-style: none;
+  padding-left: 0;
+}
+ul.features li {
+  padding-left: 24px;
+  position: relative;
+  margin-bottom: 6px;
+}
+ul.features li::before {
+  content: "✔";
+  color: #28a745;
+  position: absolute;
+  left: 0;
+}
 
 /* --- Gaya Gallery --- */
 #gallery-section {
@@ -92,18 +107,7 @@ h2 {
   transform: scale(1.1);
 }
 
-/* Responsive tweaks */
-@media (max-width: 640px) {
-  body {
-    max-width: 100%;
-  }
-  section {
-    padding: 15px;
-  }
-  h1 {
-    font-size: 1.5rem;
-  }
-}
+/* --- Butang WhatsApp --- */
 .btn-whatsapp {
   display: inline-flex;
   align-items: center;
@@ -115,17 +119,40 @@ h2 {
   padding: 12px 20px;
   border-radius: 50px;
   text-decoration: none;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
-
 .btn-whatsapp:hover {
   background-color: #1ebe5d;
+  transform: translateY(-2px);
 }
-
 .btn-whatsapp svg {
   width: 24px;
   height: 24px;
   fill: white;
 }
 
+/* Footer */
+footer {
+  text-align: center;
+  padding: 15px;
+  font-size: 0.9rem;
+  color: #6c757d;
+}
 
+/* Responsive tweaks */
+@media (max-width: 640px) {
+  body {
+    max-width: 100%;
+  }
+  section {
+    padding: 15px;
+  }
+  h1 {
+    font-size: 1.5rem;
+  }
+  .btn-whatsapp {
+    font-size: 1rem;
+    padding: 10px 16px;
+  }
+}

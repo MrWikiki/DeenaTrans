@@ -3,325 +3,749 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Deena Transport and Transfer Service</title>
+  <title>Deena Trans Services</title>
   <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Fraunces:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
   <style>
-    /* Reset & Layout Asas */
-    * {
-      box-sizing: border-box;
+    :root {
+      --green-50: #EAF7F0;
+      --green-100: #C2EBDA;
+      --green-200: #8DD6B9;
+      --green-400: #3BB07A;
+      --green-500: #29915F;
+      --green-600: #1E7049;
+      --green-700: #145134;
+      --green-800: #0B3823;
+      --teal-400: #1D9E75;
+      --white: #ffffff;
+      --gray-50: #F8FAF9;
+      --gray-100: #EEF2EF;
+      --gray-200: #D4DDD7;
+      --gray-400: #8A9E92;
+      --gray-600: #4A5C50;
+      --gray-800: #1E2B23;
+      --shadow-sm: 0 1px 4px rgba(30,70,40,0.07);
+      --shadow-md: 0 4px 18px rgba(30,70,40,0.10);
+      --shadow-lg: 0 8px 32px rgba(30,70,40,0.14);
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 22px;
+      --font: 'Plus Jakarta Sans', sans-serif;
     }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      background: #f8f9fa;
-      margin: 0;
-      padding: 0;
-      color: #212529;
-      max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.6;
+      font-family: var(--font);
+      background: var(--gray-50);
+      color: var(--gray-800);
+      line-height: 1.7;
     }
 
-    header {
-      border-bottom: 1px solid #ddd;
-      margin-bottom: 20px;
-      overflow: hidden;
-      border-radius: 8px 8px 0 0;
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--gray-100);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 24px; height: 60px;
     }
-    header img {
-      width: 100%;
-      height: auto;
-      display: block;
-      object-fit: cover;
-      max-height: 220px;
+    .nav-brand { font-family: 'Fraunces', serif; font-size: 1.25rem; color: var(--green-600); font-weight: 700; }
+    .nav-links { display: flex; gap: 8px; }
+    .nav-links a {
+      font-size: 0.85rem; font-weight: 500; color: var(--gray-600);
+      text-decoration: none; padding: 6px 14px; border-radius: 30px;
+      transition: background 0.2s, color 0.2s;
     }
-    .header-text {
-      padding: 15px 20px;
-      background-color: white;
-      border-radius: 0 0 8px 8px;
-    }
-    h1 {
-      margin: 0;
-      font-weight: 700;
-      color: #0d6efd;
-      font-size: 1.8rem;
-    }
-    .location {
-      color: #6c757d;
-      font-size: 0.9rem;
-      margin-top: 6px;
-    }
+    .nav-links a:hover { background: var(--green-50); color: var(--green-600); }
 
-    section {
-      padding: 0 20px 20px 20px;
-      margin-bottom: 20px;
-      background-color: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
-    h2 {
-      font-weight: 600;
-      color: #343a40;
-      border-bottom: 1px solid #dee2e6;
-      padding-bottom: 8px;
-      margin-bottom: 12px;
-      font-size: 1.25rem;
-    }
-
-    /* --- Gaya Gallery --- */
-    #gallery-section {
-      background-color: white;
-      padding: 20px;
-      border-radius: 8px;
-      margin: 20px 0;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, var(--green-600) 0%, var(--green-400) 60%, var(--teal-400) 100%);
+      padding: 80px 24px 70px;
       text-align: center;
+      position: relative;
+      overflow: hidden;
     }
-    .image-carousel {
-      display: flex;
-      gap: 15px;
-      overflow-x: auto;
-      scroll-behavior: smooth;
-      padding: 10px 0;
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
     }
-    .image-carousel::-webkit-scrollbar {
-      display: none;
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      color: #fff;
+      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em;
+      padding: 5px 16px; border-radius: 30px;
+      border: 1px solid rgba(255,255,255,0.3);
+      margin-bottom: 20px;
     }
-    .image-carousel img {
-      width: 180px;
-      height: 120px;
-      border-radius: 0;
-      object-fit: cover;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-      transition: transform 0.3s ease;
-      flex-shrink: 0;
+    .hero h1 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2.2rem, 6vw, 3.6rem);
+      color: #fff;
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 16px;
     }
-    .image-carousel img:hover {
-      transform: scale(1.1);
+    .hero h1 em { font-style: italic; color: rgba(255,255,255,0.85); }
+    .hero p {
+      font-size: 1.05rem; color: rgba(255,255,255,0.85);
+      max-width: 540px; margin: 0 auto 32px;
     }
-    
-    
-    
-
-    /* Floating Call Button */
-.call-float {
-  position: fixed;
-  bottom: 100px;
-  right: 20px;
-  width: 60px;
-  height: 60px;
-  background-color: #0d6efd;
-  color: white;
-  font-size: 28px;
-  border-radius: 50%;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  z-index: 999;
-  transition: transform 0.3s ease;
-}
-.call-float:hover {
-  transform: scale(1.1);
-}
-
-/* WhatsApp Din */
-.whatsapp-float {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 60px;
-  height: 60px;
-  background-color: #25D366;
-  color: white;
-  font-size: 28px;
-  border-radius: 50%;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  z-index: 999;
-  transition: transform 0.3s ease;
-}
-.whatsapp-float:hover {
-  transform: scale(1.1);
-}
-
-/* WhatsApp Hadi */
-.whatsapp-float-hadi {
-  position: fixed;
-  bottom: 20px;
-  right: 90px;
-  width: 60px;
-  height: 60px;
-  background-color: #128C7E;
-  color: white;
-  font-size: 28px;
-  border-radius: 50%;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  z-index: 999;
-  transition: transform 0.3s ease;
-}
-.whatsapp-float-hadi:hover {
-  transform: scale(1.1);
-}
-
-
-
-
-    /* Responsive tweaks */
-    @media (max-width: 640px) {
-      body {
-        max-width: 100%;
-      }
-      section {
-        padding: 15px;
-      }
-      h1 {
-        font-size: 1.5rem;
-      }
+    .hero-cta { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: #fff; color: var(--green-600);
+      font-family: var(--font); font-size: 0.95rem; font-weight: 600;
+      padding: 12px 28px; border-radius: 30px;
+      border: none; cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      text-decoration: none; display: inline-block;
     }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+    .btn-outline {
+      background: transparent; color: #fff;
+      font-family: var(--font); font-size: 0.95rem; font-weight: 600;
+      padding: 12px 28px; border-radius: 30px;
+      border: 2px solid rgba(255,255,255,0.55); cursor: pointer;
+      transition: background 0.2s;
+      text-decoration: none; display: inline-block;
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.12); }
+
+    /* stats bar */
+    .hero-stats {
+      display: flex; justify-content: center; gap: 40px;
+      margin-top: 50px; flex-wrap: wrap;
+    }
+    .stat { text-align: center; }
+    .stat-num { font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 700; color: #fff; line-height: 1; }
+    .stat-lbl { font-size: 0.8rem; color: rgba(255,255,255,0.7); margin-top: 4px; }
+
+    /* ── MAIN WRAPPER ── */
+    .container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+
+    /* ── SECTION HEADINGS ── */
+    .section { padding: 60px 0; }
+    .section-label {
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em;
+      color: var(--green-500); text-transform: uppercase; margin-bottom: 8px;
+    }
+    .section-title {
+      font-family: 'Fraunces', serif; font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 700; color: var(--gray-800); line-height: 1.25;
+      margin-bottom: 12px;
+    }
+    .section-sub { font-size: 1rem; color: var(--gray-400); max-width: 540px; margin-bottom: 36px; }
+
+    /* ── SERVICES CARDS ── */
+    .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
+    .card {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--gray-100);
+      padding: 24px 20px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .card-icon {
+      width: 44px; height: 44px;
+      background: var(--green-50); border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; margin-bottom: 14px;
+    }
+    .card h3 { font-size: 1rem; font-weight: 600; color: var(--gray-800); margin-bottom: 6px; }
+    .card p { font-size: 0.875rem; color: var(--gray-400); line-height: 1.6; }
+
+    /* ── DESTINATIONS ── */
+    .dest-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; }
+    .dest-chip {
+      background: var(--white);
+      border: 1px solid var(--gray-100);
+      border-radius: var(--radius-sm);
+      padding: 12px 16px;
+      font-size: 0.875rem; font-weight: 500;
+      color: var(--gray-600);
+      display: flex; align-items: center; gap: 8px;
+      transition: border-color 0.2s, background 0.2s, color 0.2s;
+      cursor: default;
+    }
+    .dest-chip:hover { border-color: var(--green-400); background: var(--green-50); color: var(--green-600); }
+    .dest-dot { width: 8px; height: 8px; background: var(--green-400); border-radius: 50%; flex-shrink: 0; }
+
+    /* ── PRICE CALCULATOR ── */
+    #calculator { background: var(--white); border-radius: var(--radius-lg); border: 1px solid var(--gray-100); overflow: hidden; }
+    .calc-header { background: linear-gradient(135deg, var(--green-600), var(--green-400)); padding: 28px 32px; }
+    .calc-header h3 { font-family: 'Fraunces', serif; font-size: 1.4rem; color: #fff; }
+    .calc-header p { font-size: 0.875rem; color: rgba(255,255,255,0.75); margin-top: 4px; }
+    .calc-body { padding: 28px 32px; }
+    .calc-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+    .field label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--gray-600); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .field select, .field input[type=number] {
+      width: 100%; padding: 10px 14px;
+      border: 1px solid var(--gray-200); border-radius: var(--radius-sm);
+      font-family: var(--font); font-size: 0.95rem; color: var(--gray-800);
+      background: var(--gray-50);
+      transition: border-color 0.2s;
+      appearance: none;
+    }
+    .field select:focus, .field input:focus { outline: none; border-color: var(--green-400); background: #fff; }
+    .vehicle-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px; }
+    .veh-option {
+      border: 2px solid var(--gray-200); border-radius: var(--radius-sm);
+      padding: 12px 10px; text-align: center; cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .veh-option.active { border-color: var(--green-400); background: var(--green-50); }
+    .veh-option .veh-icon { font-size: 22px; margin-bottom: 4px; }
+    .veh-option .veh-name { font-size: 0.78rem; font-weight: 600; color: var(--gray-600); }
+    .veh-option .veh-cap { font-size: 0.72rem; color: var(--gray-400); }
+    .calc-result {
+      background: var(--green-50);
+      border: 1px solid var(--green-100);
+      border-radius: var(--radius-md);
+      padding: 20px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .est-label { font-size: 0.8rem; font-weight: 600; color: var(--green-600); text-transform: uppercase; letter-spacing: 0.05em; }
+    .est-price { font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 700; color: var(--green-700); }
+    .est-note { font-size: 0.8rem; color: var(--green-600); margin-top: 2px; }
+    .btn-book-now {
+      background: var(--green-500); color: #fff;
+      font-family: var(--font); font-size: 0.9rem; font-weight: 600;
+      padding: 12px 24px; border-radius: 30px;
+      border: none; cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      text-decoration: none; display: inline-block;
+    }
+    .btn-book-now:hover { background: var(--green-600); transform: translateY(-2px); }
+
+    /* ── BOOKING FORM ── */
+    #booking { background: var(--white); border-radius: var(--radius-lg); border: 1px solid var(--gray-100); overflow: hidden; }
+    .booking-header { background: var(--green-700); padding: 28px 32px; }
+    .booking-header h3 { font-family: 'Fraunces', serif; font-size: 1.4rem; color: #fff; }
+    .booking-header p { font-size: 0.875rem; color: rgba(255,255,255,0.7); margin-top: 4px; }
+    .booking-body { padding: 28px 32px; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--gray-600); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%; padding: 10px 14px;
+      border: 1px solid var(--gray-200); border-radius: var(--radius-sm);
+      font-family: var(--font); font-size: 0.95rem; color: var(--gray-800);
+      background: var(--gray-50); transition: border-color 0.2s;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      outline: none; border-color: var(--green-400); background: #fff;
+    }
+    .form-group textarea { resize: vertical; min-height: 80px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .form-submit {
+      width: 100%; padding: 14px;
+      background: var(--green-500); color: #fff;
+      font-family: var(--font); font-size: 1rem; font-weight: 700;
+      border: none; border-radius: var(--radius-sm); cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 8px;
+    }
+    .form-submit:hover { background: var(--green-600); }
+    .booking-success {
+      display: none; text-align: center; padding: 40px 24px;
+    }
+    .booking-success .big-check {
+      font-size: 56px; margin-bottom: 16px;
+    }
+    .booking-success h4 { font-family: 'Fraunces', serif; font-size: 1.4rem; color: var(--green-700); margin-bottom: 8px; }
+    .booking-success p { color: var(--gray-400); font-size: 0.95rem; }
+
+    /* ── FAQ ── */
+    .faq-list { display: flex; flex-direction: column; gap: 10px; }
+    .faq-item {
+      background: var(--white);
+      border: 1px solid var(--gray-100);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      transition: box-shadow 0.2s;
+    }
+    .faq-item.open { box-shadow: var(--shadow-sm); border-color: var(--green-100); }
+    .faq-q {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 18px 22px; cursor: pointer;
+      font-size: 0.95rem; font-weight: 500; color: var(--gray-800);
+      user-select: none;
+    }
+    .faq-q:hover { background: var(--gray-50); }
+    .faq-icon {
+      width: 24px; height: 24px;
+      background: var(--gray-100); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; flex-shrink: 0;
+      transition: background 0.2s, transform 0.3s;
+    }
+    .faq-item.open .faq-icon { background: var(--green-100); transform: rotate(45deg); }
+    .faq-a {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.3s;
+      font-size: 0.9rem; color: var(--gray-600); line-height: 1.75;
+    }
+    .faq-item.open .faq-a { max-height: 300px; }
+    .faq-a-inner { padding: 0 22px 18px; }
+
+    /* ── FLOATING BUTTONS ── */
+    .float-group { position: fixed; bottom: 24px; right: 20px; display: flex; flex-direction: column; align-items: flex-end; gap: 10px; z-index: 999; }
+    .float-btn {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 18px 10px 14px;
+      border-radius: 30px;
+      box-shadow: var(--shadow-lg);
+      font-family: var(--font); font-size: 0.85rem; font-weight: 600;
+      text-decoration: none; color: #fff;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .float-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.18); }
+    .float-btn-icon { width: 32px; height: 32px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+    .fb-call { background: var(--green-600); }
+    .fb-wa1 { background: #25D366; }
+    .fb-wa2 { background: #128C7E; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--green-800); color: rgba(255,255,255,0.65);
+      text-align: center; padding: 28px 24px;
+      font-size: 0.85rem;
+    }
+    footer strong { color: rgba(255,255,255,0.9); }
+
+    /* ── GALLERY ── */
+    .gallery-scroll { display: flex; gap: 14px; overflow-x: auto; padding: 4px 0 12px; scroll-behavior: smooth; }
+    .gallery-scroll::-webkit-scrollbar { height: 4px; }
+    .gallery-scroll::-webkit-scrollbar-thumb { background: var(--gray-200); border-radius: 4px; }
+    .gallery-scroll img {
+      width: 200px; height: 130px; object-fit: cover;
+      border-radius: var(--radius-sm); flex-shrink: 0;
+      transition: transform 0.2s; cursor: zoom-in;
+    }
+    .gallery-scroll img:hover { transform: scale(1.04); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .calc-row, .form-row { grid-template-columns: 1fr; }
+      .vehicle-options { grid-template-columns: repeat(3, 1fr); }
+      .booking-body, .calc-body { padding: 20px; }
+      .nav-links { display: none; }
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .fade-in { animation: fadeUp 0.6s ease both; }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
   </style>
 </head>
 <body>
-  <header>
-    <img src="header.jpg" alt="Transportation vehicle" />
-    <div class="header-text">
-      <h1>Deena Trans Services</h1>
-      <div class="location">Transportation and Transfer - Malaysia</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">Deena Trans</div>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#calculator">Price Est.</a>
+    <a href="#booking">Book Now</a>
+    <a href="#faq">FAQ</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">✈ Available 24/7 — Rain or Shine</div>
+  <h1 class="fade-in">Your Ride from KLIA,<br><em>Done Right.</em></h1>
+  <p class="fade-in delay-1">Professional airport transfers & interstate travel across Peninsular Malaysia. Trusted by hundreds of travellers.</p>
+  <div class="hero-cta fade-in delay-2">
+    <a href="#booking" class="btn-primary">Book a Ride</a>
+    <a href="#calculator" class="btn-outline">Estimate Price</a>
+  </div>
+  <div class="hero-stats fade-in delay-3">
+    <div class="stat"><div class="stat-num">24/7</div><div class="stat-lbl">Always available</div></div>
+    <div class="stat"><div class="stat-num">10+</div><div class="stat-lbl">Destinations covered</div></div>
+    <div class="stat"><div class="stat-num">100%</div><div class="stat-lbl">Punctual pickups</div></div>
+    <div class="stat"><div class="stat-num">Pro</div><div class="stat-lbl">Licensed drivers</div></div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section" id="services">
+  <div class="container">
+    <div class="section-label">What We Offer</div>
+    <h2 class="section-title">Reliable transport for every journey</h2>
+    <p class="section-sub">From early morning departures to late-night arrivals — we've got you covered.</p>
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-icon">✈️</div>
+        <h3>KLIA Airport Transfer</h3>
+        <p>Pickup & drop-off at KLIA & KLIA2. Door-to-door, no stress. Airport paging service available.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏙️</div>
+        <h3>KL City Transfers</h3>
+        <p>Bukit Bintang, KL Sentral, KLCC — direct rides with no detours.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🛣️</div>
+        <h3>Interstate Travel</h3>
+        <p>Penang, Ipoh, Melaka, JB, Genting & more. Comfortable long-distance rides.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🧭</div>
+        <h3>Private Tours</h3>
+        <p>Petronas Towers, Batu Caves, Cameron Highlands, Langkawi. Custom itinerary your way.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🌙</div>
+        <h3>Late Night Arrivals</h3>
+        <p>Landing at 1 AM or 4 AM? Our drivers are awake and waiting for you.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🪧</div>
+        <h3>Airport Paging</h3>
+        <p>Driver waits at Arrival Hall with a placard — perfect for guests & first-timers.</p>
+      </div>
     </div>
-  </header>
+  </div>
+</section>
 
-  <section>
-    <h2>About Us</h2>
-    <p>
-      Providing reliable, comfortable, and affordable airport transfer services to and from KLIA. Our professional drivers ensure timely pickups and safe rides with well-maintained vehicles. Available 24/7 for your convenience.
-    </p>
-  </section>
-
-  <section>
-    <h2>🛬 Landing in Kuala Lumpur?</h2>
-    <p>
-      Struggling to find a reliable and safe ride—especially late at night? Let’s change that. Discover the difference with <strong>Deena Trans Services</strong>!
-    </p>
-    <p>
-      We provide a wide range of vehicles to suit your needs for <strong>Kuala Lumpur International Airport (KLIA)</strong> and <strong>interstate transfers</strong> across Peninsular Malaysia.
-    </p>
-    <h3>🚖 Need an early morning ride to KLIA?</h3>
-    <p>
-      Worried about e-hailing availability, uncomfortable interiors, or bumpy rides? Choose Deena Trans for a smoother, more dependable journey—day or night.
-    </p>
-    <h3>✈️ Landing after midnight?</h3>
-    <p>
-      We’ve got you covered—whether you're arriving at 1 AM or 5 AM. Our drivers are always ready.
-    </p>
-    <h3>👥 Expecting a guest at KLIA?</h3>
-    <p>
-      Let us take care of their pickup so you can focus on welcoming them. We even offer <strong>airport paging service</strong>—our driver will wait at the Arrival Hall with a name placard for a warm, professional greeting.
-    </p>
-    <p>🌧️ <strong>Rain or shine, we’re available 24/7!</strong> Count on us for dependable service at any time of day or night.</p>
-    <h3>🚐 We provide direct transfers to:</h3>
-    <ul>
-      <li>KL City (Bukit Bintang, KL Sentral)</li>
-      <li>Genting Highlands</li>
-      <li>Melaka</li>
-      <li>Ipoh</li>
-      <li>Penang</li>
-      <li>Johor Bahru</li>
-      <li>Other states upon request</li>
-    </ul>
-    <h3>💎 Our premium, executive or standard airport and interstate service offers:</h3>
-    <ul>
-      <li>A wide variety of vehicles: from compact sedans to luxury MPV with a spacious interior</li>
-      <li>Safe and reliable transportation</li>
-      <li>Trained and experience drivers</li>
-      <li>Full mannered with good personality driver</li>
-    </ul>
-    
-    <h3>🇲🇾 Sightseeing & Exploration in Malaysia:</h3>
-    <ul>
-      <li>Iconic Landmarks – Visit world-famous attractions such as the Petronas Twin Towers, Batu Caves, and the historic streets of Melaka, each offering unique stories and photo-worthy views.</li>
-      <li>Nature & Adventure – Explore lush rainforests, tea plantations in the Cameron Highlands, and scenic beaches in Langkawi. Perfect for nature lovers and adventure seekers alike.</li>
-      <li>Cultural Diversity – Experience Malaysia’s rich mix of Malay, Chinese, Indian, and indigenous traditions through festivals, heritage sites, and vibrant local markets.</li>
-      <li>Custom Private Tours – From half-day city sightseeing to multi-day interstate adventures, we customize every trip to match your interests, pace, and comfort.</li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>Know Before You Go</h2>
-    <div>
-      For a smooth and hassle-free experience, we recommend booking your airport transfers or guided tours with Deena Trans Services in advance.<br><br>
-      Traveling with lots of luggage or a group? No worries! Choose our larger vehicle options to ensure everyone travels comfortably.<br><br>
-      To make your journey even better, feel free to share any special requests or preferences with your driver ahead of time.<br><br>
-      Many of our customers keep coming back to Deena Trans Services for their airport transfers because they trust us to be consistent and dependable every time.
+<!-- DESTINATIONS -->
+<section style="padding: 0 0 60px;" id="destinations">
+  <div class="container">
+    <div class="section-label">Direct Transfers To</div>
+    <h2 class="section-title" style="margin-bottom: 24px;">We go wherever you need</h2>
+    <div class="dest-grid">
+      <div class="dest-chip"><span class="dest-dot"></span>KL City</div>
+      <div class="dest-chip"><span class="dest-dot"></span>Genting Highlands</div>
+      <div class="dest-chip"><span class="dest-dot"></span>Melaka</div>
+      <div class="dest-chip"><span class="dest-dot"></span>Ipoh</div>
+      <div class="dest-chip"><span class="dest-dot"></span>Penang</div>
+      <div class="dest-chip"><span class="dest-dot"></span>Johor Bahru</div>
+      <div class="dest-chip"><span class="dest-dot"></span>Seremban</div>
+      <div class="dest-chip"><span class="dest-dot"></span>Cameron Highlands</div>
+      <div class="dest-chip"><span class="dest-dot"></span>Other states ✦</div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Gallery -->
-  <section id="gallery-section">
-    <h2>Gallery</h2>
-    <div class="image-carousel" id="image-carousel"></div>
-  </section>
+<!-- PRICE CALCULATOR -->
+<section style="padding: 0 0 60px;" id="calculator">
+  <div class="container">
+    <div class="section-label">Pricing Estimator</div>
+    <h2 class="section-title" style="margin-bottom: 8px;">How much will it cost?</h2>
+    <p class="section-sub">Get a quick estimate before you book. Final price confirmed on WhatsApp.</p>
+    <div id="calculatorWidget">
+      <div class="calc-header">
+        <h3>Trip Price Estimator</h3>
+        <p>Select your route and vehicle to see an estimated fare</p>
+      </div>
+      <div class="calc-body">
+        <div class="calc-row">
+          <div class="field">
+            <label>From</label>
+            <select id="calcFrom">
+              <option value="klia">KLIA / KLIA2</option>
+              <option value="kl">KL City</option>
+              <option value="other">Other location</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>To</label>
+            <select id="calcTo">
+              <option value="kl">KL City Centre</option>
+              <option value="genting">Genting Highlands</option>
+              <option value="melaka">Melaka</option>
+              <option value="ipoh">Ipoh</option>
+              <option value="penang">Penang</option>
+              <option value="jb">Johor Bahru</option>
+              <option value="cameron">Cameron Highlands</option>
+            </select>
+          </div>
+        </div>
+        <div class="field" style="margin-bottom: 20px;">
+          <label>Number of passengers</label>
+          <input type="number" id="calcPax" min="1" max="13" value="2" style="max-width: 120px;" />
+        </div>
+        <label style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--gray-600); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.05em;">Select Vehicle</label>
+        <div class="vehicle-options">
+          <div class="veh-option active" data-v="sedan" onclick="selectVehicle(this,'sedan')">
+            <div class="veh-icon">🚗</div>
+            <div class="veh-name">Sedan</div>
+            <div class="veh-cap">1–4 pax</div>
+          </div>
+          <div class="veh-option" data-v="mpv" onclick="selectVehicle(this,'mpv')">
+            <div class="veh-icon">🚐</div>
+            <div class="veh-name">MPV</div>
+            <div class="veh-cap">1–7 pax</div>
+          </div>
+          <div class="veh-option" data-v="van" onclick="selectVehicle(this,'van')">
+            <div class="veh-icon">🚌</div>
+            <div class="veh-name">Hi-Ace</div>
+            <div class="veh-cap">1–13 pax</div>
+          </div>
+        </div>
+        <div class="calc-result">
+          <div>
+            <div class="est-label">Estimated Fare</div>
+            <div class="est-price" id="estPrice">RM 80</div>
+            <div class="est-note" id="estNote">Sedan • KL City • 1 way</div>
+          </div>
+          <a href="https://wa.me/+601157152406?text=Hello!%20I%20would%20like%20to%20book%20a%20ride." class="btn-book-now" target="_blank">Confirm via WhatsApp →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <footer>
-    &copy; 2025 Deena Trans Services
-  </footer>
+<!-- BOOKING FORM -->
+<section style="padding: 0 0 60px;" id="booking">
+  <div class="container">
+    <div class="section-label">Make a Booking</div>
+    <h2 class="section-title" style="margin-bottom: 8px;">Reserve your ride now</h2>
+    <p class="section-sub">Fill in your details and we'll confirm via WhatsApp within minutes.</p>
+    <div id="booking">
+      <div class="booking-header">
+        <h3>Booking Request</h3>
+        <p>We'll send a confirmation to your WhatsApp</p>
+      </div>
+      <div class="booking-body" id="bookingForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" id="bName" placeholder="Your name" />
+          </div>
+          <div class="form-group">
+            <label>WhatsApp Number</label>
+            <input type="tel" id="bPhone" placeholder="+60 1X-XXXXXXX" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Pickup Location</label>
+            <input type="text" id="bFrom" placeholder="e.g. KLIA Terminal 1" />
+          </div>
+          <div class="form-group">
+            <label>Destination</label>
+            <input type="text" id="bTo" placeholder="e.g. Bukit Bintang, KL" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Date</label>
+            <input type="date" id="bDate" />
+          </div>
+          <div class="form-group">
+            <label>Time</label>
+            <input type="time" id="bTime" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Vehicle Type</label>
+            <select id="bVehicle">
+              <option>Sedan (1–4 pax)</option>
+              <option>MPV (1–7 pax)</option>
+              <option>Hi-Ace (1–13 pax)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Passengers</label>
+            <input type="number" id="bPax" min="1" max="13" value="2" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Special Requests</label>
+          <textarea id="bNotes" placeholder="Flight number, extra luggage, airport paging, etc."></textarea>
+        </div>
+        <button class="form-submit" onclick="submitBooking()">📨 Send Booking via WhatsApp</button>
+      </div>
+      <div class="booking-success" id="bookingSuccess">
+        <div class="big-check">✅</div>
+        <h4>Booking Sent!</h4>
+        <p>Your details have been forwarded to our WhatsApp. We'll confirm your ride shortly.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <!-- Button WhatsApp Terapung -->
-  <a href="https://wa.me/+601157152406?text=Hello!%20I%20would%20like%20to%20book%20a%20ride%20with%20Deena%20Trans%20Services."
-     class="whatsapp-float"
-     target="_blank"
-     aria-label="Chat on WhatsApp">
-    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-      <path fill="#fff" d="M16 0C7.163 0 0 7.164 0 16c0 2.817.738 5.567 2.144 7.988L0 32l8.28-2.16C10.64 30.85 13.29 32 16 32c8.837 0 16-7.164 16-16S24.837 0 16 0z"/>
-      <path fill="#25D366" d="M16 2c7.732 0 14 6.268 14 14 0 7.732-6.268 14-14 14-2.57 0-5.056-.708-7.225-2.047l-.517-.31-4.91 1.28 1.31-4.846-.333-.534C3.84 21.305 3 18.697 3 16 3 8.268 9.268 2 16 2z"/>
-      <path fill="#fff" d="M24.322 19.85c-.373-.187-2.21-1.093-2.554-1.216-.345-.124-.595-.187-.845.187-.25.373-.968 1.215-1.187 1.465-.218.25-.436.28-.81.093-.373-.187-1.578-.58-3.006-1.848-1.111-.992-1.861-2.215-2.079-2.588-.218-.373-.023-.574.164-.761.168-.168.373-.436.56-.654.187-.218.25-.373.373-.623.124-.25.062-.468-.031-.654-.093-.187-.845-2.038-1.16-2.785-.305-.73-.615-.63-.845-.64-.218-.01-.468-.012-.718-.012s-.654.093-1 .467c-.345.373-1.31 1.278-1.31 3.11 0 1.832 1.34 3.6 1.526 3.848.187.25 2.638 4.03 6.4 5.654.895.386 1.594.617 2.14.79.898.285 1.717.245 2.364.148.721-.108 2.21-.904 2.522-1.777.31-.873.31-1.62.218-1.777-.092-.156-.34-.25-.713-.437z"/>
-    </svg>
+<!-- GALLERY -->
+<section style="padding: 0 0 60px;" id="gallery">
+  <div class="container">
+    <div class="section-label">Our Fleet</div>
+    <h2 class="section-title" style="margin-bottom: 24px;">Clean, comfortable vehicles</h2>
+    <div class="gallery-scroll" id="image-carousel"></div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section style="padding: 0 0 80px;" id="faq">
+  <div class="container">
+    <div class="section-label">Common Questions</div>
+    <h2 class="section-title" style="margin-bottom: 32px;">Frequently Asked Questions</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>Do you operate 24 hours?</span>
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">Yes! We operate 24/7, 365 days a year — including public holidays. Whether you need a pickup at 3 AM or a midnight drop-off, our drivers are ready.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>How far in advance should I book?</span>
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">We recommend booking at least 24 hours in advance, especially for early morning or late-night trips. Last-minute bookings are accepted subject to availability — just WhatsApp us to check.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>What vehicles do you have?</span>
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">We offer sedans (1–4 passengers), MPVs (1–7 passengers), and Hi-Ace vans (up to 13 passengers). All vehicles are well-maintained, air-conditioned, and cleaned before every trip.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>Is the price in the estimator final?</span>
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">The estimator gives a rough price range to help you plan. Final confirmed pricing is agreed via WhatsApp before your trip — no hidden charges. Toll and parking fees may apply for some routes.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>What is airport paging service?</span>
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">Our driver waits at the Arrival Hall holding a placard with your name or your guest's name. Great for welcoming VIPs, first-time visitors, or anyone unfamiliar with KLIA. Just request this when booking.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>Can I bring large luggage or extra bags?</span>
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">Absolutely. For large groups or heavy luggage, we recommend choosing the MPV or Hi-Ace for extra boot space. Mention your luggage details when booking so we can assign the right vehicle.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>How do I pay?</span>
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">We accept cash and bank transfer (TNG / DuitNow). Payment is made directly to the driver upon arrival, or via transfer before the trip. All transactions are confirmed via WhatsApp.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <strong>Deena Trans Services</strong> — Professional Airport Transfers &amp; Interstate Travel, Malaysia<br>
+  <span style="margin-top: 6px; display: inline-block;">© 2025 Deena Trans Services. All rights reserved.</span>
+</footer>
+
+<!-- FLOATING BUTTONS -->
+<div class="float-group">
+  <a href="tel:+601157152406" class="float-btn fb-call">
+    <div class="float-btn-icon">📞</div>
+    Call Din
   </a>
-  
-  <!-- Floating Call Button for Din -->
-<a href="tel:+601157152406" 
-   class="call-float" 
-   target="_blank" 
-   aria-label="Call Din (24 hours)">
-  📞
-</a>
+  <a href="https://wa.me/+601161933916?text=Hello%20Sigma!%20I%20would%20like%20to%20book%20a%20ride." class="float-btn fb-wa2" target="_blank">
+    <div class="float-btn-icon">💬</div>
+    WhatsApp Hadi
+  </a>
+  <a href="https://wa.me/+601157152406?text=Hello%20Gamma!%20I%20would%20like%20to%20book%20a%20ride." class="float-btn fb-wa1" target="_blank">
+    <div class="float-btn-icon">💬</div>
+    WhatsApp Din
+  </a>
+</div>
 
-<!-- Floating WhatsApp Button for Din -->
-<a href="https://wa.me/+601157152406?text=Hello%20Gamma!%20I%20would%20like%20to%20book%20a%20ride." 
-   class="whatsapp-float" 
-   target="_blank" 
-   aria-label="WhatsApp Din (24 hours)">
-  💬
-</a>
+<script src="js/gallery.js"></script>
+<script>
+  // ── PRICE CALCULATOR ──
+  const rates = {
+    sedan:  { kl: 80,  genting: 130, melaka: 160, ipoh: 200, penang: 350, jb: 320, cameron: 220 },
+    mpv:    { kl: 110, genting: 160, melaka: 200, ipoh: 250, penang: 430, jb: 400, cameron: 280 },
+    van:    { kl: 150, genting: 220, melaka: 280, ipoh: 340, penang: 560, jb: 520, cameron: 370 },
+  };
+  const routeLabels = { kl: 'KL City', genting: 'Genting', melaka: 'Melaka', ipoh: 'Ipoh', penang: 'Penang', jb: 'Johor Bahru', cameron: 'Cameron Highlands' };
+  const vehLabels   = { sedan: 'Sedan', mpv: 'MPV', van: 'Hi-Ace' };
+  let curVehicle = 'sedan';
 
-<!-- Floating WhatsApp Button for Hadi -->
-<a href="https://wa.me/+601161933916?text=Hello%20Sigma!%20I%20would%20like%20to%20book%20a%20ride." 
-   class="whatsapp-float-hadi" 
-   target="_blank" 
-   aria-label="WhatsApp Hadi">
-  💬
-</a>
+  function selectVehicle(el, v) {
+    document.querySelectorAll('.veh-option').forEach(o => o.classList.remove('active'));
+    el.classList.add('active');
+    curVehicle = v;
+    updateCalc();
+  }
 
+  function updateCalc() {
+    const to    = document.getElementById('calcTo').value;
+    const price = rates[curVehicle][to] || 80;
+    document.getElementById('estPrice').textContent = 'RM ' + price;
+    document.getElementById('estNote').textContent  = vehLabels[curVehicle] + ' • ' + (routeLabels[to] || to) + ' • 1 way';
+  }
 
-  <script src="js/gallery.js"></script>
+  document.getElementById('calcTo').addEventListener('change', updateCalc);
+  document.getElementById('calcPax').addEventListener('input', updateCalc);
+
+  // ── BOOKING FORM ──
+  function submitBooking() {
+    const name    = document.getElementById('bName').value.trim();
+    const phone   = document.getElementById('bPhone').value.trim();
+    const from    = document.getElementById('bFrom').value.trim();
+    const to      = document.getElementById('bTo').value.trim();
+    const date    = document.getElementById('bDate').value;
+    const time    = document.getElementById('bTime').value;
+    const vehicle = document.getElementById('bVehicle').value;
+    const pax     = document.getElementById('bPax').value;
+    const notes   = document.getElementById('bNotes').value.trim();
+
+    if (!name || !phone || !from || !to || !date || !time) {
+      alert('Please fill in all required fields.');
+      return;
+    }
+
+    const msg = `Hello! I would like to book a ride with Deena Trans Services.
+
+Name: ${name}
+Phone: ${phone}
+From: ${from}
+To: ${to}
+Date: ${date}
+Time: ${time}
+Vehicle: ${vehicle}
+Passengers: ${pax}
+Notes: ${notes || 'None'}`;
+
+    const waUrl = 'https://wa.me/+601157152406?text=' + encodeURIComponent(msg);
+    window.open(waUrl, '_blank');
+
+    document.getElementById('bookingForm').style.display = 'none';
+    document.getElementById('bookingSuccess').style.display = 'block';
+  }
+
+  // ── FAQ ACCORDION ──
+  function toggleFaq(el) {
+    const item = el.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // ── SMOOTH SCROLL for nav ──
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    });
+  });
+</script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-

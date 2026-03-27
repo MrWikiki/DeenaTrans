@@ -176,54 +176,6 @@
     .dest-chip:hover { border-color: var(--green-400); background: var(--green-50); color: var(--green-600); }
     .dest-dot { width: 8px; height: 8px; background: var(--green-400); border-radius: 50%; flex-shrink: 0; }
 
-    /* ── PRICE CALCULATOR ── */
-    #calculator { background: var(--white); border-radius: var(--radius-lg); border: 1px solid var(--gray-100); overflow: hidden; }
-    .calc-header { background: linear-gradient(135deg, var(--green-600), var(--green-400)); padding: 28px 32px; }
-    .calc-header h3 { font-family: 'Fraunces', serif; font-size: 1.4rem; color: #fff; }
-    .calc-header p { font-size: 0.875rem; color: rgba(255,255,255,0.75); margin-top: 4px; }
-    .calc-body { padding: 28px 32px; }
-    .calc-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
-    .field label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--gray-600); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.05em; }
-    .field select, .field input[type=number] {
-      width: 100%; padding: 10px 14px;
-      border: 1px solid var(--gray-200); border-radius: var(--radius-sm);
-      font-family: var(--font); font-size: 0.95rem; color: var(--gray-800);
-      background: var(--gray-50);
-      transition: border-color 0.2s;
-      appearance: none;
-    }
-    .field select:focus, .field input:focus { outline: none; border-color: var(--green-400); background: #fff; }
-    .vehicle-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px; }
-    .veh-option {
-      border: 2px solid var(--gray-200); border-radius: var(--radius-sm);
-      padding: 12px 10px; text-align: center; cursor: pointer;
-      transition: border-color 0.2s, background 0.2s;
-    }
-    .veh-option.active { border-color: var(--green-400); background: var(--green-50); }
-    .veh-option .veh-icon { font-size: 22px; margin-bottom: 4px; }
-    .veh-option .veh-name { font-size: 0.78rem; font-weight: 600; color: var(--gray-600); }
-    .veh-option .veh-cap { font-size: 0.72rem; color: var(--gray-400); }
-    .calc-result {
-      background: var(--green-50);
-      border: 1px solid var(--green-100);
-      border-radius: var(--radius-md);
-      padding: 20px 24px;
-      display: flex; align-items: center; justify-content: space-between;
-      flex-wrap: wrap; gap: 12px;
-    }
-    .est-label { font-size: 0.8rem; font-weight: 600; color: var(--green-600); text-transform: uppercase; letter-spacing: 0.05em; }
-    .est-price { font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 700; color: var(--green-700); }
-    .est-note { font-size: 0.8rem; color: var(--green-600); margin-top: 2px; }
-    .btn-book-now {
-      background: var(--green-500); color: #fff;
-      font-family: var(--font); font-size: 0.9rem; font-weight: 600;
-      padding: 12px 24px; border-radius: 30px;
-      border: none; cursor: pointer;
-      transition: background 0.2s, transform 0.2s;
-      text-decoration: none; display: inline-block;
-    }
-    .btn-book-now:hover { background: var(--green-600); transform: translateY(-2px); }
-
     /* ── BOOKING FORM ── */
     #booking { background: var(--white); border-radius: var(--radius-lg); border: 1px solid var(--gray-100); overflow: hidden; }
     .booking-header { background: var(--green-700); padding: 28px 32px; }
@@ -353,7 +305,6 @@
   <div class="nav-brand">Deena Trans</div>
   <div class="nav-links">
     <a href="#services">Services</a>
-    <a href="#calculator">Price Est.</a>
     <a href="#booking">Book Now</a>
     <a href="#faq">FAQ</a>
   </div>
@@ -366,7 +317,6 @@
   <p class="fade-in delay-1">Professional airport transfers & interstate travel across Peninsular Malaysia. Trusted by hundreds of travellers.</p>
   <div class="hero-cta fade-in delay-2">
     <a href="#booking" class="btn-primary">Book a Ride</a>
-    <a href="#calculator" class="btn-outline">Estimate Price</a>
   </div>
   <div class="hero-stats fade-in delay-3">
     <div class="stat"><div class="stat-num">24/7</div><div class="stat-lbl">Always available</div></div>
@@ -436,74 +386,6 @@
   </div>
 </section>
 
-<!-- PRICE CALCULATOR -->
-<section style="padding: 0 0 60px;" id="calculator">
-  <div class="container">
-    <div class="section-label">Pricing Estimator</div>
-    <h2 class="section-title" style="margin-bottom: 8px;">How much will it cost?</h2>
-    <p class="section-sub">Get a quick estimate before you book. Final price confirmed on WhatsApp.</p>
-    <div id="calculatorWidget">
-      <div class="calc-header">
-        <h3>Trip Price Estimator</h3>
-        <p>Select your route and vehicle to see an estimated fare</p>
-      </div>
-      <div class="calc-body">
-        <div class="calc-row">
-          <div class="field">
-            <label>From</label>
-            <select id="calcFrom">
-              <option value="klia">KLIA / KLIA2</option>
-              <option value="kl">KL City</option>
-              <option value="other">Other location</option>
-            </select>
-          </div>
-          <div class="field">
-            <label>To</label>
-            <select id="calcTo">
-              <option value="kl">KL City Centre</option>
-              <option value="genting">Genting Highlands</option>
-              <option value="melaka">Melaka</option>
-              <option value="ipoh">Ipoh</option>
-              <option value="penang">Penang</option>
-              <option value="jb">Johor Bahru</option>
-              <option value="cameron">Cameron Highlands</option>
-            </select>
-          </div>
-        </div>
-        <div class="field" style="margin-bottom: 20px;">
-          <label>Number of passengers</label>
-          <input type="number" id="calcPax" min="1" max="13" value="2" style="max-width: 120px;" />
-        </div>
-        <label style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--gray-600); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.05em;">Select Vehicle</label>
-        <div class="vehicle-options">
-          <div class="veh-option active" data-v="sedan" onclick="selectVehicle(this,'sedan')">
-            <div class="veh-icon">🚗</div>
-            <div class="veh-name">Sedan</div>
-            <div class="veh-cap">1–4 pax</div>
-          </div>
-          <div class="veh-option" data-v="mpv" onclick="selectVehicle(this,'mpv')">
-            <div class="veh-icon">🚐</div>
-            <div class="veh-name">MPV</div>
-            <div class="veh-cap">1–7 pax</div>
-          </div>
-          <div class="veh-option" data-v="van" onclick="selectVehicle(this,'van')">
-            <div class="veh-icon">🚌</div>
-            <div class="veh-name">Hi-Ace</div>
-            <div class="veh-cap">1–13 pax</div>
-          </div>
-        </div>
-        <div class="calc-result">
-          <div>
-            <div class="est-label">Estimated Fare</div>
-            <div class="est-price" id="estPrice">RM 80</div>
-            <div class="est-note" id="estNote">Sedan • KL City • 1 way</div>
-          </div>
-          <a href="https://wa.me/+601157152406?text=Hello!%20I%20would%20like%20to%20book%20a%20ride." class="btn-book-now" target="_blank">Confirm via WhatsApp →</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- BOOKING FORM -->
 <section style="padding: 0 0 60px;" id="booking">
@@ -668,33 +550,6 @@
 
 <script src="js/gallery.js"></script>
 <script>
-  // ── PRICE CALCULATOR ──
-  const rates = {
-    sedan:  { kl: 80,  genting: 130, melaka: 160, ipoh: 200, penang: 350, jb: 320, cameron: 220 },
-    mpv:    { kl: 110, genting: 160, melaka: 200, ipoh: 250, penang: 430, jb: 400, cameron: 280 },
-    van:    { kl: 150, genting: 220, melaka: 280, ipoh: 340, penang: 560, jb: 520, cameron: 370 },
-  };
-  const routeLabels = { kl: 'KL City', genting: 'Genting', melaka: 'Melaka', ipoh: 'Ipoh', penang: 'Penang', jb: 'Johor Bahru', cameron: 'Cameron Highlands' };
-  const vehLabels   = { sedan: 'Sedan', mpv: 'MPV', van: 'Hi-Ace' };
-  let curVehicle = 'sedan';
-
-  function selectVehicle(el, v) {
-    document.querySelectorAll('.veh-option').forEach(o => o.classList.remove('active'));
-    el.classList.add('active');
-    curVehicle = v;
-    updateCalc();
-  }
-
-  function updateCalc() {
-    const to    = document.getElementById('calcTo').value;
-    const price = rates[curVehicle][to] || 80;
-    document.getElementById('estPrice').textContent = 'RM ' + price;
-    document.getElementById('estNote').textContent  = vehLabels[curVehicle] + ' • ' + (routeLabels[to] || to) + ' • 1 way';
-  }
-
-  document.getElementById('calcTo').addEventListener('change', updateCalc);
-  document.getElementById('calcPax').addEventListener('input', updateCalc);
-
   // ── BOOKING FORM ──
   function submitBooking() {
     const name    = document.getElementById('bName').value.trim();

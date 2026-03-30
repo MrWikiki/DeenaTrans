@@ -177,10 +177,22 @@
     .dest-dot { width: 8px; height: 8px; background: var(--green-400); border-radius: 50%; flex-shrink: 0; }
 
     /* ── BOOKING FORM ── */
-    #booking { background: var(--white); border-radius: var(--radius-lg); border: 1px solid var(--gray-100); overflow: hidden; }
+    .booking-wrap { background: var(--white); border-radius: var(--radius-lg); border: 1px solid var(--gray-100); overflow: hidden; }
     .booking-header { background: var(--green-700); padding: 28px 32px; }
     .booking-header h3 { font-family: 'Fraunces', serif; font-size: 1.4rem; color: #fff; }
     .booking-header p { font-size: 0.875rem; color: rgba(255,255,255,0.7); margin-top: 4px; }
+    .booking-tabs { display: flex; border-bottom: 1px solid var(--gray-100); background: var(--gray-50); }
+    .booking-tab {
+      flex: 1; padding: 14px 20px; cursor: pointer;
+      font-family: var(--font); font-size: 0.9rem; font-weight: 600;
+      color: var(--gray-400); background: none; border: none;
+      border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s, background 0.2s;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .booking-tab:hover { color: var(--gray-600); background: var(--gray-100); }
+    .booking-tab.active { color: var(--green-600); border-bottom-color: var(--green-500); background: var(--white); }
+    .booking-panel { display: none; }
+    .booking-panel.active { display: block; }
     .booking-body { padding: 28px 32px; }
     .form-group { margin-bottom: 16px; }
     .form-group label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--gray-600); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.05em; }
@@ -193,7 +205,7 @@
     .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
       outline: none; border-color: var(--green-400); background: #fff;
     }
-    .form-group textarea { resize: vertical; min-height: 80px; }
+    .form-group textarea { resize: vertical; min-height: 90px; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
     .form-submit {
       width: 100%; padding: 14px;
@@ -204,14 +216,15 @@
       margin-top: 8px;
     }
     .form-submit:hover { background: var(--green-600); }
+    .form-submit.email-btn { background: var(--green-700); }
+    .form-submit.email-btn:hover { background: var(--green-800); }
     .booking-success {
       display: none; text-align: center; padding: 40px 24px;
     }
-    .booking-success .big-check {
-      font-size: 56px; margin-bottom: 16px;
-    }
+    .booking-success .big-check { font-size: 56px; margin-bottom: 16px; }
     .booking-success h4 { font-family: 'Fraunces', serif; font-size: 1.4rem; color: var(--green-700); margin-bottom: 8px; }
     .booking-success p { color: var(--gray-400); font-size: 0.95rem; }
+    .email-note { font-size: 0.82rem; color: var(--gray-400); text-align: center; margin-top: 10px; }
 
     /* ── FAQ ── */
     .faq-list { display: flex; flex-direction: column; gap: 10px; }
@@ -392,68 +405,124 @@
   <div class="container">
     <div class="section-label">Make a Booking</div>
     <h2 class="section-title" style="margin-bottom: 8px;">Reserve your ride now</h2>
-    <p class="section-sub">Fill in your details and we'll confirm via WhatsApp within minutes.</p>
-    <div id="booking">
+    <p class="section-sub">Choose how you'd like to reach us — WhatsApp or Email.</p>
+    <div class="booking-wrap">
       <div class="booking-header">
         <h3>Booking Request</h3>
-        <p>We'll send a confirmation to your WhatsApp</p>
+        <p>We'll confirm your ride as soon as possible</p>
       </div>
-      <div class="booking-body" id="bookingForm">
-        <div class="form-row">
-          <div class="form-group">
-            <label>Full Name</label>
-            <input type="text" id="bName" placeholder="Your name" />
-          </div>
-          <div class="form-group">
-            <label>WhatsApp Number</label>
-            <input type="tel" id="bPhone" placeholder="+60 1X-XXXXXXX" />
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label>Pickup Location</label>
-            <input type="text" id="bFrom" placeholder="e.g. KLIA Terminal 1" />
-          </div>
-          <div class="form-group">
-            <label>Destination</label>
-            <input type="text" id="bTo" placeholder="e.g. Bukit Bintang, KL" />
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label>Date</label>
-            <input type="date" id="bDate" />
-          </div>
-          <div class="form-group">
-            <label>Time</label>
-            <input type="time" id="bTime" />
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label>Vehicle Type</label>
-            <select id="bVehicle">
-              <option>Sedan (1–4 pax)</option>
-              <option>MPV (1–7 pax)</option>
-              <option>Hi-Ace (1–13 pax)</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Passengers</label>
-            <input type="number" id="bPax" min="1" max="13" value="2" />
-          </div>
-        </div>
-        <div class="form-group">
-          <label>Special Requests</label>
-          <textarea id="bNotes" placeholder="Flight number, extra luggage, airport paging, etc."></textarea>
-        </div>
-        <button class="form-submit" onclick="submitBooking()">📨 Send Booking via WhatsApp</button>
+
+      <!-- TABS -->
+      <div class="booking-tabs">
+        <button class="booking-tab active" onclick="switchTab('wa')">
+          💬 WhatsApp
+        </button>
+        <button class="booking-tab" onclick="switchTab('email')">
+          ✉️ Email
+        </button>
       </div>
-      <div class="booking-success" id="bookingSuccess">
-        <div class="big-check">✅</div>
-        <h4>Booking Sent!</h4>
-        <p>Your details have been forwarded to our WhatsApp. We'll confirm your ride shortly.</p>
+
+      <!-- WHATSAPP PANEL -->
+      <div class="booking-panel active" id="panel-wa">
+        <div class="booking-body" id="bookingForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Full Name</label>
+              <input type="text" id="bName" placeholder="Your name" />
+            </div>
+            <div class="form-group">
+              <label>WhatsApp Number</label>
+              <input type="tel" id="bPhone" placeholder="+60 1X-XXXXXXX" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Pickup Location</label>
+              <input type="text" id="bFrom" placeholder="e.g. KLIA Terminal 1" />
+            </div>
+            <div class="form-group">
+              <label>Destination</label>
+              <input type="text" id="bTo" placeholder="e.g. Bukit Bintang, KL" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Date</label>
+              <input type="date" id="bDate" />
+            </div>
+            <div class="form-group">
+              <label>Time</label>
+              <input type="time" id="bTime" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Vehicle Type</label>
+              <select id="bVehicle">
+                <option>Sedan (1–4 pax)</option>
+                <option>MPV (1–7 pax)</option>
+                <option>Hi-Ace (1–13 pax)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Passengers</label>
+              <input type="number" id="bPax" min="1" max="13" value="2" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Special Requests</label>
+            <textarea id="bNotes" placeholder="Flight number, extra luggage, airport paging, etc."></textarea>
+          </div>
+          <button class="form-submit" onclick="submitBooking()">📨 Send Booking via WhatsApp</button>
+        </div>
+        <div class="booking-success" id="bookingSuccess">
+          <div class="big-check">✅</div>
+          <h4>Booking Sent!</h4>
+          <p>Your details have been forwarded to our WhatsApp. We'll confirm your ride shortly.</p>
+        </div>
       </div>
+
+      <!-- EMAIL PANEL -->
+      <div class="booking-panel" id="panel-email">
+        <div class="booking-body" id="emailForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Full Name</label>
+              <input type="text" id="eName" placeholder="Your name" />
+            </div>
+            <div class="form-group">
+              <label>Your Email</label>
+              <input type="email" id="eEmail" placeholder="yourname@email.com" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" id="ePhone" placeholder="+60 1X-XXXXXXX" />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Date</label>
+              <input type="date" id="eDate" />
+            </div>
+            <div class="form-group">
+              <label>Time</label>
+              <input type="time" id="eTime" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Message / Enquiry</label>
+            <textarea id="eMessage" placeholder="Tell us your pickup location, destination, number of passengers, and any special requests..."></textarea>
+          </div>
+          <button class="form-submit email-btn" onclick="submitEmail()">✉️ Send Enquiry via Email</button>
+          <p class="email-note">Your email app will open with a pre-filled message to deenатrans@email.com</p>
+        </div>
+        <div class="booking-success" id="emailSuccess">
+          <div class="big-check">📧</div>
+          <h4>Email Ready!</h4>
+          <p>Your email app has opened with a pre-filled enquiry. Send it and we'll get back to you soon.</p>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -550,7 +619,15 @@
 
 <script src="js/gallery.js"></script>
 <script>
-  // ── BOOKING FORM ──
+  // ── TAB SWITCHING ──
+  function switchTab(tab) {
+    document.querySelectorAll('.booking-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.booking-panel').forEach(p => p.classList.remove('active'));
+    document.querySelector(`#panel-${tab}`).classList.add('active');
+    event.currentTarget.classList.add('active');
+  }
+
+  // ── BOOKING FORM (WhatsApp) ──
   function submitBooking() {
     const name    = document.getElementById('bName').value.trim();
     const phone   = document.getElementById('bPhone').value.trim();
@@ -584,6 +661,43 @@ Notes: ${notes || 'None'}`;
 
     document.getElementById('bookingForm').style.display = 'none';
     document.getElementById('bookingSuccess').style.display = 'block';
+  }
+
+  // ── EMAIL FORM ──
+  function submitEmail() {
+    const name    = document.getElementById('eName').value.trim();
+    const email   = document.getElementById('eEmail').value.trim();
+    const phone   = document.getElementById('ePhone').value.trim();
+    const date    = document.getElementById('eDate').value;
+    const time    = document.getElementById('eTime').value;
+    const message = document.getElementById('eMessage').value.trim();
+
+    if (!name || !email || !message) {
+      alert('Please fill in your name, email, and message.');
+      return;
+    }
+
+    const subject = encodeURIComponent('Booking Enquiry – Deena Trans Services');
+    const body = encodeURIComponent(
+`Hello Deena Trans Services,
+
+I would like to make an enquiry / booking.
+
+Name: ${name}
+Email: ${email}
+Phone: ${phone || 'Not provided'}
+Date: ${date || 'Not specified'}
+Time: ${time || 'Not specified'}
+
+Message:
+${message}
+
+Thank you.`
+    );
+
+    window.location.href = `mailto:deenатrans@email.com?subject=${subject}&body=${body}`;
+    document.getElementById('emailForm').style.display = 'none';
+    document.getElementById('emailSuccess').style.display = 'block';
   }
 
   // ── FAQ ACCORDION ──

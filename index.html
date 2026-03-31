@@ -142,23 +142,37 @@
     .section-sub { font-size: 1rem; color: var(--gray-400); max-width: 540px; margin-bottom: 36px; }
 
     /* ── SERVICES CARDS ── */
-    .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
+    .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
     .card {
       background: var(--white);
       border-radius: var(--radius-md);
       border: 1px solid var(--gray-100);
-      padding: 24px 20px;
-      transition: transform 0.2s, box-shadow 0.2s;
+      padding: 24px 22px;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+      display: flex; flex-direction: column; gap: 12px;
+      position: relative; overflow: hidden;
     }
-    .card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .card::after {
+      content: ''; position: absolute;
+      top: 0; left: 0; width: 3px; height: 100%;
+      background: var(--green-400); opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: var(--green-100); }
+    .card:hover::after { opacity: 1; }
+    .card-top { display: flex; align-items: center; gap: 14px; }
     .card-icon {
-      width: 44px; height: 44px;
-      background: var(--green-50); border-radius: 12px;
+      width: 48px; height: 48px; flex-shrink: 0;
+      background: var(--green-50);
+      border: 1px solid var(--green-100);
+      border-radius: 14px;
       display: flex; align-items: center; justify-content: center;
-      font-size: 20px; margin-bottom: 14px;
+      font-size: 22px;
+      transition: background 0.2s, transform 0.2s;
     }
-    .card h3 { font-size: 1rem; font-weight: 600; color: var(--gray-800); margin-bottom: 6px; }
-    .card p { font-size: 0.875rem; color: var(--gray-400); line-height: 1.6; }
+    .card:hover .card-icon { background: var(--green-100); transform: scale(1.08); }
+    .card h3 { font-size: 0.95rem; font-weight: 700; color: var(--gray-800); line-height: 1.3; }
+    .card p { font-size: 0.85rem; color: var(--gray-400); line-height: 1.65; margin: 0; padding-left: 62px; }
 
     /* ── DESTINATIONS ── */
     .dest-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; }
@@ -225,6 +239,38 @@
     .booking-success h4 { font-family: 'Fraunces', serif; font-size: 1.4rem; color: var(--green-700); margin-bottom: 8px; }
     .booking-success p { color: var(--gray-400); font-size: 0.95rem; }
     .email-note { font-size: 0.82rem; color: var(--gray-400); text-align: center; margin-top: 10px; }
+
+    /* ── VEHICLE PICKER ── */
+    .vehicle-picker {
+      border: 1px solid var(--gray-200); border-radius: var(--radius-sm);
+      background: var(--gray-50); padding: 12px; display: flex; flex-direction: column; gap: 12px;
+    }
+    .vp-group-label {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--gray-400);
+      padding: 0 0 6px; border-bottom: 1px solid var(--gray-100);
+      margin-bottom: 6px;
+    }
+    .vp-group { display: flex; flex-direction: column; gap: 4px; }
+    .vp-options-row { display: flex; flex-wrap: wrap; gap: 6px; }
+    .vp-option {
+      display: inline-flex; flex-direction: column;
+      padding: 8px 14px; border-radius: var(--radius-sm);
+      border: 1.5px solid var(--gray-200); background: var(--white);
+      cursor: pointer; transition: border-color 0.15s, background 0.15s, transform 0.15s;
+      min-width: 100px;
+    }
+    .vp-option:hover { border-color: var(--green-300, #6fcca0); background: var(--green-50); transform: translateY(-1px); }
+    .vp-option.selected { border-color: var(--green-500); background: var(--green-50); box-shadow: 0 0 0 3px rgba(41,145,95,0.12); }
+    .vp-name { font-size: 0.875rem; font-weight: 600; color: var(--gray-800); }
+    .vp-detail { font-size: 0.75rem; color: var(--gray-400); margin-top: 2px; }
+    .vp-option.selected .vp-name { color: var(--green-700); }
+    .vp-option.selected .vp-detail { color: var(--green-600); }
+    .vp-selected-display {
+      margin-top: 8px; font-size: 0.85rem; font-weight: 500;
+      color: var(--gray-400); font-style: italic;
+    }
+    .vp-selected-display.chosen { color: var(--green-600); font-style: normal; font-weight: 600; }
 
     /* ── FAQ ── */
     .faq-list { display: flex; flex-direction: column; gap: 10px; }
@@ -347,34 +393,46 @@
     <p class="section-sub">From early morning departures to late-night arrivals — we've got you covered.</p>
     <div class="cards-grid">
       <div class="card">
-        <div class="card-icon">✈️</div>
-        <h3>KLIA Airport Transfer</h3>
-        <p>Pickup & drop-off at KLIA & KLIA2. Door-to-door, no stress. Airport paging service available.</p>
+        <div class="card-top">
+          <div class="card-icon">🛬</div>
+          <h3>KLIA / KLIA2 Airport Transfer</h3>
+        </div>
+        <p>Door-to-door pickup & drop-off at both terminals. On-time, every time — day or night.</p>
       </div>
       <div class="card">
-        <div class="card-icon">🏙️</div>
-        <h3>KL City Transfers</h3>
-        <p>Bukit Bintang, KL Sentral, KLCC — direct rides with no detours.</p>
+        <div class="card-top">
+          <div class="card-icon">🏙️</div>
+          <h3>KL City Transfers</h3>
+        </div>
+        <p>Direct rides to Bukit Bintang, KL Sentral, KLCC, and anywhere in the city — no detours.</p>
       </div>
       <div class="card">
-        <div class="card-icon">🛣️</div>
-        <h3>Interstate Travel</h3>
-        <p>Penang, Ipoh, Melaka, JB, Genting & more. Comfortable long-distance rides.</p>
+        <div class="card-top">
+          <div class="card-icon">🛣️</div>
+          <h3>Interstate Travel</h3>
+        </div>
+        <p>Comfortable long-distance rides to Penang, Ipoh, Melaka, JB, Genting & more.</p>
       </div>
       <div class="card">
-        <div class="card-icon">🧭</div>
-        <h3>Private Tours</h3>
-        <p>Petronas Towers, Batu Caves, Cameron Highlands, Langkawi. Custom itinerary your way.</p>
+        <div class="card-top">
+          <div class="card-icon">🧭</div>
+          <h3>Private Sightseeing Tours</h3>
+        </div>
+        <p>Explore Petronas Towers, Batu Caves, Cameron Highlands & beyond. Custom itinerary, your pace.</p>
       </div>
       <div class="card">
-        <div class="card-icon">🌙</div>
-        <h3>Late Night Arrivals</h3>
-        <p>Landing at 1 AM or 4 AM? Our drivers are awake and waiting for you.</p>
+        <div class="card-top">
+          <div class="card-icon">🌙</div>
+          <h3>Late Night & Early Morning Rides</h3>
+        </div>
+        <p>Arriving at 1 AM or leaving at 4 AM? Our drivers are always on standby for you.</p>
       </div>
       <div class="card">
-        <div class="card-icon">🪧</div>
-        <h3>Airport Paging</h3>
-        <p>Driver waits at Arrival Hall with a placard — perfect for guests & first-timers.</p>
+        <div class="card-top">
+          <div class="card-icon">🪧</div>
+          <h3>Airport Paging Service</h3>
+        </div>
+        <p>Driver meets your guest at the Arrival Hall with a name placard — warm, professional welcome.</p>
       </div>
     </div>
   </div>
@@ -414,10 +472,10 @@
 
       <!-- TABS -->
       <div class="booking-tabs">
-        <button class="booking-tab active" onclick="switchTab('wa')">
+        <button class="booking-tab active" data-tab="wa">
           💬 WhatsApp
         </button>
-        <button class="booking-tab" onclick="switchTab('email')">
+        <button class="booking-tab" data-tab="email">
           ✉️ Email
         </button>
       </div>
@@ -455,33 +513,84 @@
               <input type="time" id="bTime" />
             </div>
           </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label>Vehicle Type (With luggage)</label>
-              <select id="bVehicle">
-                <option>Budget SAGA (1–2 pax)</option>
-                <option>Sedan Vios (1–3 pax)</option>
-                <option>Executive Camry (1–4 pax)</option>
-                <option>Premium BMW (1–4 pax)</option>
-                <option>MPV Compact [Alza] (1–4 pax)</option>
-                <option>MPV [Innova, Serena] (1–4 pax)</option>
-                <option>MPV Exec [Staria] (1–6 pax)</option>
-                <option>MPV Premium [Alphard, Vellfire] (1–4 pax)</option>
-                <option>Van 10s (7 max)</option>
-                <option>Van 14s (10 max)</option>
-                <option>Van 18s (14 max)</option>
-              </select>
+          <div class="form-group">
+            <label>Vehicle Type (With Luggage)</label>
+            <div class="vehicle-picker" id="vehiclePicker">
+
+              <div class="vp-group">
+                <div class="vp-group-label">🏷️ Budget</div>
+                <div class="vp-option" data-value="Budget SAGA (1–2 pax)">
+                  <div class="vp-name">Saga</div>
+                  <div class="vp-detail">1–2 pax · Budget</div>
+                </div>
+              </div>
+
+              <div class="vp-group">
+                <div class="vp-group-label">🚗 Sedan</div>
+                <div class="vp-option" data-value="Sedan Vios (1–3 pax)">
+                  <div class="vp-name">Vios</div>
+                  <div class="vp-detail">1–3 pax · Standard</div>
+                </div>
+                <div class="vp-option" data-value="Executive Camry (1–4 pax)">
+                  <div class="vp-name">Camry</div>
+                  <div class="vp-detail">1–4 pax · Executive</div>
+                </div>
+                <div class="vp-option" data-value="Premium BMW (1–4 pax)">
+                  <div class="vp-name">BMW</div>
+                  <div class="vp-detail">1–4 pax · Premium</div>
+                </div>
+              </div>
+
+              <div class="vp-group">
+                <div class="vp-group-label">🚐 MPV</div>
+                <div class="vp-option" data-value="MPV Compact Alza (1–4 pax)">
+                  <div class="vp-name">Alza</div>
+                  <div class="vp-detail">1–4 pax · Compact</div>
+                </div>
+                <div class="vp-option" data-value="MPV Innova / Serena (1–4 pax)">
+                  <div class="vp-name">Innova / Serena</div>
+                  <div class="vp-detail">1–4 pax · Standard</div>
+                </div>
+                <div class="vp-option" data-value="MPV Executive Staria (1–6 pax)">
+                  <div class="vp-name">Staria</div>
+                  <div class="vp-detail">1–6 pax · Executive</div>
+                </div>
+                <div class="vp-option" data-value="MPV Premium Alphard / Vellfire (1–4 pax)">
+                  <div class="vp-name">Alphard / Vellfire</div>
+                  <div class="vp-detail">1–4 pax · Premium</div>
+                </div>
+              </div>
+
+              <div class="vp-group">
+                <div class="vp-group-label">🚌 Van</div>
+                <div class="vp-option" data-value="Van 10-seater (max 7 pax)">
+                  <div class="vp-name">Van 10s</div>
+                  <div class="vp-detail">max 7 pax</div>
+                </div>
+                <div class="vp-option" data-value="Van 14-seater (max 10 pax)">
+                  <div class="vp-name">Van 14s</div>
+                  <div class="vp-detail">max 10 pax</div>
+                </div>
+                <div class="vp-option" data-value="Van 18-seater (max 14 pax)">
+                  <div class="vp-name">Van 18s</div>
+                  <div class="vp-detail">max 14 pax</div>
+                </div>
+              </div>
+
             </div>
-            <div class="form-group">
-              <label>Passengers</label>
-              <input type="number" id="bPax" min="1" max="13" value="2" />
-            </div>
+            <input type="hidden" id="bVehicle" value="" />
+            <div class="vp-selected-display" id="vpDisplay">No vehicle selected</div>
+          </div>
+
+          <div class="form-group">
+            <label>Passengers</label>
+            <input type="number" id="bPax" min="1" max="14" value="2" />
           </div>
           <div class="form-group">
             <label>Special Requests</label>
             <textarea id="bNotes" placeholder="Flight number, extra luggage, airport paging, etc."></textarea>
           </div>
-          <button class="form-submit" onclick="submitBooking()">📨 Send Booking via WhatsApp</button>
+          <button class="form-submit" id="btnSubmitWa">📨 Send Booking via WhatsApp</button>
         </div>
         <div class="booking-success" id="bookingSuccess">
           <div class="big-check">✅</div>
@@ -521,8 +630,8 @@
             <label>Message / Enquiry</label>
             <textarea id="eMessage" placeholder="Tell us your pickup location, destination, number of passengers, and any special requests..."></textarea>
           </div>
-          <button class="form-submit email-btn" onclick="submitEmail()">✉️ Send Enquiry via Email</button>
-          <p class="email-note">Your email app will open with a pre-filled message to imfo.deena@dtserve.my</p>
+          <button class="form-submit email-btn" id="btnSubmitEmail">✉️ Send Enquiry via Email</button>
+          <p class="email-note">Your email app will open with a pre-filled message to deenат<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="cfbdaea1bc8faaa2aea6a3e1aca0a2">[email&#160;protected]</a></p>
         </div>
         <div class="booking-success" id="emailSuccess">
           <div class="big-check">📧</div>
@@ -551,49 +660,49 @@
     <h2 class="section-title" style="margin-bottom: 32px;">Frequently Asked Questions</h2>
     <div class="faq-list">
       <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
+        <div class="faq-q">
           <span>Do you operate 24 hours?</span>
           <div class="faq-icon">+</div>
         </div>
         <div class="faq-a"><div class="faq-a-inner">Yes! We operate 24/7, 365 days a year — including public holidays. Whether you need a pickup at 3 AM or a midnight drop-off, our drivers are ready.</div></div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
+        <div class="faq-q">
           <span>How far in advance should I book?</span>
           <div class="faq-icon">+</div>
         </div>
         <div class="faq-a"><div class="faq-a-inner">We recommend booking at least 24 hours in advance, especially for early morning or late-night trips. Last-minute bookings are accepted subject to availability — just WhatsApp us to check.</div></div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
+        <div class="faq-q">
           <span>What vehicles do you have?</span>
           <div class="faq-icon">+</div>
         </div>
         <div class="faq-a"><div class="faq-a-inner">We offer sedans (1–4 passengers), MPVs (1–7 passengers), and Hi-Ace vans (up to 13 passengers). All vehicles are well-maintained, air-conditioned, and cleaned before every trip.</div></div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
+        <div class="faq-q">
           <span>Is the price in the estimator final?</span>
           <div class="faq-icon">+</div>
         </div>
         <div class="faq-a"><div class="faq-a-inner">The estimator gives a rough price range to help you plan. Final confirmed pricing is agreed via WhatsApp before your trip — no hidden charges. Toll and parking fees may apply for some routes.</div></div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
+        <div class="faq-q">
           <span>What is airport paging service?</span>
           <div class="faq-icon">+</div>
         </div>
         <div class="faq-a"><div class="faq-a-inner">Our driver waits at the Arrival Hall holding a placard with your name or your guest's name. Great for welcoming VIPs, first-time visitors, or anyone unfamiliar with KLIA. Just request this when booking.</div></div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
+        <div class="faq-q">
           <span>Can I bring large luggage or extra bags?</span>
           <div class="faq-icon">+</div>
         </div>
         <div class="faq-a"><div class="faq-a-inner">Absolutely. For large groups or heavy luggage, we recommend choosing the MPV or Hi-Ace for extra boot space. Mention your luggage details when booking so we can assign the right vehicle.</div></div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
+        <div class="faq-q">
           <span>How do I pay?</span>
           <div class="faq-icon">+</div>
         </div>
@@ -625,18 +734,36 @@
   </a>
 </div>
 
-<script src="js/gallery.js"></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/gallery.js"></script>
 <script>
+document.addEventListener('DOMContentLoaded', function() {
+
+  // ── VEHICLE PICKER ──
+  document.addEventListener('click', function(e) {
+    const el = e.target.closest('.vp-option');
+    if (!el) return;
+    document.querySelectorAll('.vp-option').forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+    const val = el.dataset.value;
+    document.getElementById('bVehicle').value = val;
+    const display = document.getElementById('vpDisplay');
+    display.textContent = '✔ ' + val;
+    display.classList.add('chosen');
+  });
+
   // ── TAB SWITCHING ──
-  function switchTab(tab) {
-    document.querySelectorAll('.booking-tab').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.booking-panel').forEach(p => p.classList.remove('active'));
-    document.querySelector(`#panel-${tab}`).classList.add('active');
-    event.currentTarget.classList.add('active');
-  }
+  document.querySelectorAll('.booking-tab').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      const tab = this.dataset.tab;
+      document.querySelectorAll('.booking-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.booking-panel').forEach(p => p.classList.remove('active'));
+      document.getElementById('panel-' + tab).classList.add('active');
+      this.classList.add('active');
+    });
+  });
 
   // ── BOOKING FORM (WhatsApp) ──
-  function submitBooking() {
+  document.getElementById('btnSubmitWa').addEventListener('click', function() {
     const name    = document.getElementById('bName').value.trim();
     const phone   = document.getElementById('bPhone').value.trim();
     const from    = document.getElementById('bFrom').value.trim();
@@ -652,27 +779,24 @@
       return;
     }
 
-    const msg = `Hello! I would like to book a ride with Deena Trans Services.
+    const msg = 'Hello! I would like to book a ride with Deena Trans Services.\n\n'
+      + 'Name: ' + name + '\n'
+      + 'Phone: ' + phone + '\n'
+      + 'From: ' + from + '\n'
+      + 'To: ' + to + '\n'
+      + 'Date: ' + date + '\n'
+      + 'Time: ' + time + '\n'
+      + 'Vehicle: ' + (vehicle || 'Not selected') + '\n'
+      + 'Passengers: ' + pax + '\n'
+      + 'Notes: ' + (notes || 'None');
 
-Name: ${name}
-Phone: ${phone}
-From: ${from}
-To: ${to}
-Date: ${date}
-Time: ${time}
-Vehicle: ${vehicle}
-Passengers: ${pax}
-Notes: ${notes || 'None'}`;
-
-    const waUrl = 'https://wa.me/+601157152406?text=' + encodeURIComponent(msg);
-    window.open(waUrl, '_blank');
-
+    window.open('https://wa.me/+601157152406?text=' + encodeURIComponent(msg), '_blank');
     document.getElementById('bookingForm').style.display = 'none';
     document.getElementById('bookingSuccess').style.display = 'block';
-  }
+  });
 
   // ── EMAIL FORM ──
-  function submitEmail() {
+  document.getElementById('btnSubmitEmail').addEventListener('click', function() {
     const name    = document.getElementById('eName').value.trim();
     const email   = document.getElementById('eEmail').value.trim();
     const phone   = document.getElementById('ePhone').value.trim();
@@ -685,44 +809,43 @@ Notes: ${notes || 'None'}`;
       return;
     }
 
-    const subject = encodeURIComponent('Booking Enquiry – Deena Trans Services');
+    const subject = encodeURIComponent('Booking Enquiry - Deena Trans Services');
     const body = encodeURIComponent(
-`Hello Deena Trans Services,
-
-I would like to make an enquiry / booking.
-
-Name: ${name}
-Email: ${email}
-Phone: ${phone || 'Not provided'}
-Date: ${date || 'Not specified'}
-Time: ${time || 'Not specified'}
-
-Message:
-${message}
-
-Thank you.`
+      'Hello Deena Trans Services,\n\n'
+      + 'I would like to make an enquiry / booking.\n\n'
+      + 'Name: ' + name + '\n'
+      + 'Email: ' + email + '\n'
+      + 'Phone: ' + (phone || 'Not provided') + '\n'
+      + 'Date: ' + (date || 'Not specified') + '\n'
+      + 'Time: ' + (time || 'Not specified') + '\n\n'
+      + 'Message:\n' + message + '\n\n'
+      + 'Thank you.'
     );
 
-    window.location.href = `mailto:info.deena@dtserve.my?subject=${subject}&body=${body}`;
+    window.location.href = 'mailto:deenатrans@email.com?subject=' + subject + '&body=' + body;
     document.getElementById('emailForm').style.display = 'none';
     document.getElementById('emailSuccess').style.display = 'block';
-  }
+  });
 
   // ── FAQ ACCORDION ──
-  function toggleFaq(el) {
-    const item = el.closest('.faq-item');
-    const isOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-    if (!isOpen) item.classList.add('open');
-  }
+  document.querySelectorAll('.faq-q').forEach(function(q) {
+    q.addEventListener('click', function() {
+      const item = this.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
 
-  // ── SMOOTH SCROLL for nav ──
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', e => {
-      const target = document.querySelector(a.getAttribute('href'));
+  // ── SMOOTH SCROLL ──
+  document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+    a.addEventListener('click', function(e) {
+      const target = document.querySelector(this.getAttribute('href'));
       if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
     });
   });
+
+});
 </script>
 </body>
 </html>
